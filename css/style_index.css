@@ -129,6 +129,7 @@
       border: none;
       outline: none;
       position: relative;
+      text-decoration: none;
     }
     .card:hover, .card:focus {
       transform: translateY(-4px) scale(1.04);
@@ -160,13 +161,51 @@
       background: none;
       margin-top: auto;
     }
+    a {
+      text-decoration: none;
+    }
     @media (max-width: 900px) {
       main { padding: 1rem; gap: 1rem; }
       section { padding: 1rem .5rem; }
+      .grid { gap: .7rem; }
+      h1 { font-size: 1.5rem; }
     }
     @media (max-width: 600px) {
-      header { flex-direction: column; gap: 1rem; padding: 1rem; }
-      main { grid-template-columns: 1fr; padding: .5rem; }
-      section { padding: .7rem .3rem; }
-      .grid { grid-template-columns: 1fr 1fr; }
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+      main {
+        grid-template-columns: 1fr;
+        padding: .5rem;
+        gap: .7rem;
+      }
+      section {
+        padding: .7rem .3rem;
+        min-width: 0;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: .7rem;
+      }
+      .card {
+        font-size: 1rem;
+        padding: 1rem .3rem;
+        min-height: 70px;
+      }
+      #controls {
+        width: 100%;
+        flex-direction: column;
+        gap: .5rem;
+      }
+      #search, #theme-toggle {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-size: 1.2rem;
+        justify-content: flex-start;
+      }
     }
