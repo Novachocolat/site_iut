@@ -168,7 +168,7 @@ a {
   text-decoration: none;
 }
 @media (max-width: 900px) {
-  main { padding: 1rem; gap: 1rem; }
+  main { padding: .1rem; gap: 1rem; }
   section { padding: 1rem .5rem; }
   .grid { gap: .7rem; }
   h1 { font-size: 1.5rem; }
@@ -182,7 +182,7 @@ a {
   }
   main {
     grid-template-columns: 1fr;
-    padding: .5rem;
+    padding: .1rem;
     gap: .7rem;
   }
   section {
