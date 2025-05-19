@@ -10,9 +10,13 @@ themeToggle.addEventListener('click', () => {
     : '<i class="fa-regular fa-sun"></i>';
 });
 
-// Recherche intelligente
+// Recherche intelligente + easter egg "rickroll"
 document.getElementById('search').addEventListener('input', e => {
   const q = e.target.value.toLowerCase();
+  if (q === "rickroll") {
+    window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
+    return;
+  }
   document.querySelectorAll('section').forEach(section => {
     let found = false;
     section.querySelectorAll('.card,li').forEach(el => {
