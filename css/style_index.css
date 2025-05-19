@@ -205,9 +205,12 @@ a {
     flex-direction: column;
     gap: .5rem;
   }
-  #search, #theme-toggle {
+  #controls {
+    flex-direction: row;
+    gap: .5rem;
     width: 100%;
-    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: center;
   }
   h1 {
     font-size: 1.2rem;
