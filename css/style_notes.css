@@ -1,0 +1,124 @@
+[data-theme="dark"] {
+  --bg: #181c23;
+  --card-bg: #232a34;
+  --text: #f1f1f1;
+  --accent: #90caf9;
+  --accent2: #81c784;
+  --shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
+}
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    max-width: 700px;
+    margin: 2.5rem auto 0 auto;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem 1.5rem 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 1 0 auto; 
+}
+.title {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.desc {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+}
+label {
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: .2rem;
+}
+input[type="text"] {
+    padding: 0.7rem 1rem;
+    border: 1px solid #bdbdbd;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    outline: none;
+    background: var(--bg);
+    color: var(--text);
+    transition: border .2s;
+    margin-bottom: .2rem;
+}
+input[type="text"]:focus {
+    border-color: var(--accent);
+}
+.note-info {
+    font-size: .95rem;
+    color: #888;
+    margin-bottom: 0;
+}
+.footer {
+    text-align: center;
+    color: #888;
+    font-size: .95rem;
+    margin-top: 2rem;
+    flex-shrink: 0; 
+}
+@media (max-width: 900px) {
+    .container {
+        max-width: 98vw;
+        margin: 1.5rem 1vw 0 1vw;
+        padding: 1.2rem .8rem 1.7rem .8rem;
+    }
+    .title { font-size: 1.2rem; }
+    .subtitle { font-size: 1rem; }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+    .container {
+        max-width: 100vw;
+        margin: 1rem .2rem 0 .2rem;
+        padding: 1rem .3rem 1.2rem .3rem;
+        border-radius: 10px;
+    }
+    .title { font-size: 1.05rem; }
+    .subtitle { font-size: .95rem; }
+    .desc, .note-info, label {
+        font-size: .98rem;
+    }
+    input[type="text"] {
+        font-size: .98rem;
+        padding: 0.6rem .7rem;
+    }
+    .footer {
+        font-size: .90rem;
+        padding-left: .2rem;
+        padding-right: .2rem;
+    }
+}

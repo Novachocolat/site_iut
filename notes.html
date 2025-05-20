@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultation des notes - IUTLCO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style_index.css">
+  <link rel="stylesheet" href="css/style_notes.css">
+  <link rel="icon" href="img/logo_iut.png" type="image/png">
+</head>
+<body data-theme="light">
+  <div class="container">
+    <div class="title" style="justify-content:space-between;">
+      <span style="display:flex;align-items:center;gap:.7rem;">
+        <i class="fa-solid fa-clipboard-list"></i>
+        Consultation des notes et absences
+      </span>
+      <button id="theme-toggle" style="background:var(--accent);border:none;color:#fff;padding:.5rem 1rem;border-radius:var(--radius);cursor:pointer;transition:.2s;">
+        <i class="fa-regular fa-moon"></i>
+      </button>
+    </div>
+    <div class="subtitle">
+      <i class="fa-solid fa-graduation-cap"></i>
+      Consultation des notes saisies sur le logiciel de notes et définies à l’état “publiable”
+    </div>
+    <div class="desc">
+      La consultation est disponible pour les départements <b>Info, GACO, GB et GEA</b> de l’IUT.
+    </div>
+    <form class="input-group" autocomplete="off">
+      <label for="ine"><i class="fa-solid fa-id-card"></i> Entrez votre numéro INE</label>
+      <input type="text" id="ine" name="ine" placeholder="Ex : 123456789AB" maxlength="15" required>
+      <div class="note-info">
+        <i class="fa-solid fa-circle-info"></i>
+        Si votre identifiant INE n’est pas défini dans le logiciel, veuillez le signaler au secrétariat.
+      </div>
+    </form>
+    <a href="index.html" class="card" style="width:220px;max-width:100%;margin:0 auto;text-align:center;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+      <i class="fa-solid fa-arrow-left"></i> Retour à l'accueil
+    </a>
+  </div>
+  <div class="footer">
+    &copy; 2025 Portail IUT &mdash; Réalisé avec <i class="fa-solid fa-heart"></i> par <a class="github" href="https://github.com/Novachocolat">Lysandre PACE--BOULNOIS</a>
+  </div>
+  <script src="js/script_notes.js"></script>
+</body>
+</html>
