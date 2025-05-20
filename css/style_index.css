@@ -167,6 +167,8 @@ footer {
 a {
   text-decoration: none;
 }
+
+.github {color: #333;}
 @media (max-width: 900px) {
   main { padding: .1rem; gap: 1rem; }
   section { padding: 1rem .5rem; }

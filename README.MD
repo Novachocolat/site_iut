@@ -26,7 +26,7 @@ pdf/
   reglements/
     ... (PDFs des règlements et MCCC)
   rapports/
-    ... (Rapports Parcoursup à venir)
+    ... (Rapports Parcoursup)
 ```
 
 ## Utilisation
@@ -47,4 +47,4 @@ Lysandre PACE--BOULNOIS / Nova
 
 ---
 
-> Ce projet n'est pas affilié officiellement (pour le moment) à l'IUT ou à l'ULCO.
+> Ce projet est affilié officiellement à l'IUT de Calais et pas (encore) pour l'ULCO.
