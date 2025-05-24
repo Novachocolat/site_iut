@@ -16,10 +16,13 @@ Ce site web sert de portail pour les étudiants de l'IUT du Littoral Côte d'Opa
 
 ```
 index.html
+notes.html
 css/
   style_index.css
+  style_notes.css
 js/
   script_index.js
+  script_notes.js
 img/
   logo_iut.png
 pdf/
@@ -48,3 +51,11 @@ Lysandre PACE--BOULNOIS / Nova
 ---
 
 > Ce projet est affilié officiellement à l'IUT de Calais et pas (encore) pour l'ULCO.
+
+
+**============================================**
+# Initialisation du projet
+## Construction et démarrage des containers
+```docker compose build --no-cache && docker compose up -d```
+## Suppression des containers
+```docker compose down --remove-orphans```
