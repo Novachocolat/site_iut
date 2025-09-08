@@ -35,3 +35,22 @@ document.getElementById('search').addEventListener('input', e => {
     section.style.display = found || q === '' ? '' : 'none';
   });
 });
+
+// Show info popup on page load and allow manual close
+window.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('info-popup');
+  const closeBtn = document.getElementById('popup-close');
+  let hideTimeout;
+  if (popup) {
+    popup.classList.add('show');
+    hideTimeout = setTimeout(() => {
+      popup.classList.remove('show');
+    }, 10000); // Hide after 10 seconds
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        popup.classList.remove('show');
+        clearTimeout(hideTimeout);
+      });
+    }
+  }
+});

@@ -1,134 +1,118 @@
+/* ==================================================
+   Notes Stylesheet (Optimisé)
+   Sections:
+   - Variables & Thèmes
+   - Base & Typographie
+   - Conteneur & Structure
+   - Formulaires & Inputs
+   - Textes (title, subtitle, desc)
+   - Utilitaires & Footer
+   - Accessibilité & Préférences
+   - Responsive
+   ================================================== */
+
+/* ============= Variables & Thèmes ============= */
+:root {
+  --bg: #f7fafd;
+  --card-bg: #fff;
+  --text: #222;
+  --accent: #1976d2;
+  --accent2: #43a047;
+  --shadow: 0 4px 16px rgba(25,118,210,.08);
+  --radius: 14px;
+  --transition: .25s cubic-bezier(.4,0,.2,1);
+  --focus-ring: 0 0 0 3px rgba(25,118,210,.35);
+}
 [data-theme="dark"] {
   --bg: #181c23;
   --card-bg: #232a34;
   --text: #f1f1f1;
   --accent: #90caf9;
   --accent2: #81c784;
-  --shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
+  --shadow: 0 4px 16px rgba(25,118,210,.18);
+  --focus-ring: 0 0 0 3px rgba(144,202,249,.45);
 }
+:root { color-scheme: light dark; }
+
+/* ============= Base & Typographie ============= */
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-.container {
-    max-width: 700px;
-    margin: 2.5rem auto 0 auto;
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 2rem 1.5rem 2.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    flex: 1 0 auto; 
-}
-.card {
-    width:220px;
-    max-width:100%;
-    margin:0 auto;
-    text-align:center;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:.5rem;
-}
-.title {
-    display: flex;
-    align-items: center;
-    gap: .7rem;
-    font-size: 1.5rem;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: .5rem;
-}
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--accent2);
-    font-weight: 600;
-    margin-bottom: .5rem;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-}
-.desc {
-    font-size: 1rem;
-    color: var(--text);
-    margin-bottom: 1rem;
-}
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    margin-bottom: 1.5rem;
-}
-label {
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: .2rem;
-}
-input[type="text"] {
-    padding: 0.7rem 1rem;
-    border: 1px solid #bdbdbd;
-    border-radius: var(--radius);
-    font-size: 1rem;
-    outline: none;
-    background: var(--bg);
-    color: var(--text);
-    transition: border .2s;
-    margin-bottom: .2rem;
-}
-input[type="text"]:focus {
-    border-color: var(--accent);
-}
-.note-info {
-    font-size: .95rem;
-    color: #888;
-    margin-bottom: 0;
-}
-.footer {
-    text-align: center;
-    color: #888;
-    font-size: .95rem;
-    margin-top: 2rem;
-    flex-shrink: 0; 
-}
-@media (max-width: 900px) {
-    .container {
-        max-width: 98vw;
-        margin: 1.5rem 1vw 0 1vw;
-        padding: 1.2rem .8rem 1.7rem .8rem;
-    }
-    .title { font-size: 1.2rem; }
-    .subtitle { font-size: 1rem; }
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI','Roboto',Arial,sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Reset basiques pour cohérence */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ============= Conteneur & Structure ============= */
+.container {
+  max-width: 700px;
+  margin: 2.5rem auto 0;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1 0 auto;
+  position: relative;
+  isolation: isolate; /* prépare effets futurs */
+}
+
+/* ============= Textes & Titres ============= */
+.title, .subtitle { display: flex; align-items: center; gap: .7rem; margin: 0 0 .5rem; font-weight: 700; }
+.title { font-size: 1.5rem; color: var(--accent); }
+.subtitle { font-size: 1.1rem; color: var(--accent2); font-weight: 600; gap: .5rem; }
+.desc { font-size: 1rem; margin: 0 0 1rem; line-height: 1.5; }
+.note-info { font-size: .95rem; color: #888; margin: 0; }
+
+/* ============= Carte (si utilisée) ============= */
+.card { width: 220px; max-width: 100%; margin: 0 auto; text-align: center; display: flex; align-items: center; justify-content: center; gap: .5rem; }
+
+/* ============= Groupes Formulaire ============= */
+.input-group { display: flex; flex-direction: column; gap: .5rem; margin: 0 0 1.5rem; }
+label { font-weight: 500; color: var(--accent); margin: 0 0 .2rem; }
+input[type="text"] {
+  padding: .7rem 1rem;
+  border: 1px solid #bdbdbd;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  outline: none;
+  background: var(--bg);
+  color: var(--text);
+  transition: border .2s, background .25s var(--transition);
+  margin: 0 0 .2rem;
+}
+input[type="text"]:focus { border-color: var(--accent); }
+input[type="text"]:focus-visible { box-shadow: var(--focus-ring); }
+input[type="text"]::placeholder { color: #777; opacity: .85; }
+
+/* ============= Footer ============= */
+.footer { text-align: center; color: #888; font-size: .95rem; margin: 2rem 0 0; flex-shrink: 0; }
+
+/* ============= Accessibilité & Préférences ============= */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ============= Responsive ============= */
+@media (max-width: 900px) {
+  .container { max-width: 98vw; margin: 1.5rem 1vw 0; padding: 1.2rem .8rem 1.7rem; }
+  .title { font-size: 1.3rem; }
+  .subtitle { font-size: 1.05rem; }
+}
 @media (max-width: 600px) {
-    body {
-        font-size: 15px;
-    }
-    .container {
-        max-width: 100vw;
-        margin: 1rem .2rem 0 .2rem;
-        padding: 1rem .3rem 1.2rem .3rem;
-        border-radius: 10px;
-    }
-    .title { font-size: 1.05rem; }
-    .subtitle { font-size: .95rem; }
-    .desc, .note-info, label {
-        font-size: .98rem;
-    }
-    input[type="text"] {
-        font-size: .98rem;
-        padding: 0.6rem .7rem;
-    }
-    .footer {
-        font-size: .90rem;
-        padding-left: .2rem;
-        padding-right: .2rem;
-    }
+  body { font-size: 15px; }
+  .container { max-width: 100vw; margin: 1rem .2rem 0; padding: 1rem .5rem 1.2rem; border-radius: 10px; }
+  .title { font-size: 1.08rem; }
+  .subtitle { font-size: .98rem; }
+  .desc, .note-info, label { font-size: .97rem; }
+  input[type="text"] { font-size: .97rem; padding: .6rem .7rem; }
+  .footer { font-size: .9rem; padding: 0 .2rem; }
 }
