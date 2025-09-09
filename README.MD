@@ -54,12 +54,3 @@ Lysandre PACE--BOULNOIS / Nova
 
 
 **============================================**
-# Project Initialization
-## Build and start containers
-```sh
-docker compose build --no-cache && docker compose up -d
-```
-## Remove containers
-```sh
-docker compose down --remove-orphans
-```
