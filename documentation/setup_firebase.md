@@ -55,6 +55,8 @@
 	const db = firebase.firestore();
 	```
 
+> Note du Développeur : "La Partie 6 est déjà implémentée dans le code."
+
 ---
 
 ## 🇬🇧 Complete guide to set up Firebase
@@ -108,5 +110,7 @@
 	firebase.initializeApp(firebaseConfig);
 	const db = firebase.firestore();
 	```
+
+> Developer's Note: "Section 6 is already implemented in the code."
 
 ---
