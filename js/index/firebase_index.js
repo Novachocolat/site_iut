@@ -1,11 +1,21 @@
-// Configuration Firebase
+// Configuration Firebase (Developper API Key)
+// const developperfirebaseConfig = {
+//   apiKey: "AIzaSyBOPF6IE9bTT6rHn5a2GklEO8XXJUrv-VY",
+//   authDomain: "extraiut.firebaseapp.com",
+//   projectId: "extraiut",
+//   storageBucket: "extraiut.firebasestorage.app",
+//   messagingSenderId: "993609489576",
+//   appId: "1:993609489576:web:58b90f5df065a98eb4769d"
+// };
+
+// Initialisation Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBOPF6IE9bTT6rHn5a2GklEO8XXJUrv-VY",
-  authDomain: "extraiut.firebaseapp.com",
-  projectId: "extraiut",
-  storageBucket: "extraiut.firebasestorage.app",
-  messagingSenderId: "993609489576",
-  appId: "1:993609489576:web:58b90f5df065a98eb4769d"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 firebase.initializeApp(firebaseConfig);
