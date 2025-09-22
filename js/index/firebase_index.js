@@ -18,7 +18,7 @@ const clientfirebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-firebase.initializeApp(developperfirebaseConfig);
+firebase.initializeApp(clientfirebaseConfig);
 const db = firebase.firestore();
 
 // Fonction pour charger le pop-up depuis Firestore
