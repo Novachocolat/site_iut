@@ -1,15 +1,15 @@
 // Configuration Firebase (Developper API Key)
-// const developperfirebaseConfig = {
-//   apiKey: "AIzaSyBOPF6IE9bTT6rHn5a2GklEO8XXJUrv-VY",
-//   authDomain: "extraiut.firebaseapp.com",
-//   projectId: "extraiut",
-//   storageBucket: "extraiut.firebasestorage.app",
-//   messagingSenderId: "993609489576",
-//   appId: "1:993609489576:web:58b90f5df065a98eb4769d"
-// };
+const developperfirebaseConfig = {
+  apiKey: "AIzaSyBOPF6IE9bTT6rHn5a2GklEO8XXJUrv-VY",
+  authDomain: "extraiut.firebaseapp.com",
+  projectId: "extraiut",
+  storageBucket: "extraiut.firebasestorage.app",
+  messagingSenderId: "993609489576",
+  appId: "1:993609489576:web:58b90f5df065a98eb4769d"
+};
 
-// Initialisation Firebase
-const firebaseConfig = {
+// Initialisation Firebase (Client API Key)
+const clientfirebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
   projectId: "YOUR_PROJECT_ID",
@@ -18,7 +18,7 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(developperfirebaseConfig);
 const db = firebase.firestore();
 
 // Fonction pour charger le pop-up depuis Firestore
