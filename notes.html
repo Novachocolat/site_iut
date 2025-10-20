@@ -40,7 +40,10 @@
     <!-- INE input form -->
     <form class="input-group" autocomplete="off">
       <label for="ine"><i class="fa-solid fa-id-card"></i> Entrez votre numéro INE</label>
-      <input type="text" id="ine" name="ine" placeholder="Ex : 123456789AB" maxlength="15" required>
+      <!-- Button to submit the form -->
+      <input type="text" id="ine" name="ine"
+        onclick="this.value=''; document.getElementById('ok').style.display='inline-block';"
+        placeholder="Ex : 123456789AB" maxlength="15" required>
       <div class="note-info">
         <i class="fa-solid fa-circle-info"></i>
         Si votre identifiant INE n’est pas défini dans le logiciel, veuillez le signaler au secrétariat.
@@ -56,6 +59,7 @@
     &copy; 2025 Portail IUT &mdash; Réalisé avec <i class="fa-solid fa-heart"></i> par <a class="github" href="https://github.com/Novachocolat">Lysandre PACE--BOULNOIS</a>
   </div>
   <!-- Main script for theme and interactions -->
-  <script src="js/script_notes.js"></script>
+  <script src="js/notes/script_notes.js"></script>
+  <script src="js/notes/script_bulletin.js"></script>
 </body>
 </html>

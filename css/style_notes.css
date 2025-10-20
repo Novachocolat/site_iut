@@ -17,7 +17,7 @@
   --card-bg: #fff;
   --text: #222;
   --accent: #1976d2;
-  --accent2: #43a047;
+  --accent2: #546e7a;
   --shadow: 0 4px 16px rgba(25,118,210,.08);
   --radius: 14px;
   --transition: .25s cubic-bezier(.4,0,.2,1);
@@ -27,8 +27,8 @@
   --bg: #181c23;
   --card-bg: #232a34;
   --text: #f1f1f1;
-  --accent: #90caf9;
-  --accent2: #81c784;
+  --accent: #1976d2;
+  --accent2: #546e7a;
   --shadow: 0 4px 16px rgba(25,118,210,.18);
   --focus-ring: 0 0 0 3px rgba(144,202,249,.45);
 }
