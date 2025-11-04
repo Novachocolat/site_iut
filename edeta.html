@@ -7,25 +7,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EDETA, l'application mobile de l'IUTLCO pour consulter rapidement votre emploi du temps. Téléchargement Android.">
   <title>EDETA - Application Mobile</title>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/style_index.css">
   <link rel="stylesheet" href="css/style_edeta.css">
   <link rel="icon" href="img/logo_iut.png" type="image/png">
 </head>
 <body data-theme="light">
-  <header>
-    <h1><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> Application mobile EDETA</h1>
-    <div id="controls">
-      <a href="index.html" class="card">
-        <i class="fa-solid fa-arrow-left"></i> Retour au portail
-      </a>
-    </div>
-  </header>
-  <main>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+  <main id="main">
     <section>
-
-      <h2><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Qu'est-ce que EDETA ?</h2>
+      <h2><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> Application mobile EDETA</h2>
+      <h3 style="margin:.6rem 0 0; color:var(--accent2); font-weight:600; font-size:1.05rem;"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Qu'est-ce que EDETA ?</h3>
       <div class="desc" style="font-size:1.1rem;">
         EDETA est l'application mobile pour les étudiants de l'IUTLCO.<br>
         <b>Fonctionnalités&nbsp;:</b>
@@ -36,7 +32,7 @@
         </ul>
       </div>
 
-      <h2><i class="fa-solid fa-suitcase" aria-hidden="true"></i> Pour quelles formations est-elle disponible ?</h2>
+      <h3 style="margin-top:1rem; color:var(--accent2); font-weight:600; font-size:1.05rem;"><i class="fa-solid fa-suitcase" aria-hidden="true"></i> Pour quelles formations est-elle disponible ?</h3>
       <div class="desc" style="font-size:1.1rem;">
         Actuellement, l'application EDETA est en phase de test auprès des étudiants du BUT INFO.<br><br>
         Si l'application connait du succès, elle se verra disponible pour les autres départements de l'IUT !
@@ -60,8 +56,16 @@
   <footer>
     &copy; 2025 Portail IUT &mdash; Réalisé avec <i class="fa-solid fa-heart"></i> par
     <a class="github" href="https://github.com/Novachocolat" target="_blank" rel="noopener noreferrer">Lysandre PACE--BOULNOIS</a>
+    &nbsp;&middot;&nbsp;
+    <a href="privacy.html" rel="noopener">Confidentialité &amp; cookies</a>
   </footer>
-
+  <!-- Firebase (for maintenance guard) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="js/env.runtime.js"></script>
+  <script src="js/common/firebase_init.js"></script>
+  <script src="js/common/maintenance_guard.js"></script>
+  <script src="js/common/nav.js"></script>
   <script src="js/script_edeta.js"></script>
   
 </body>

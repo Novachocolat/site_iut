@@ -1,5 +1,6 @@
-  // Gestion du thème clair/sombre synchronisé avec localStorage
-  const themeToggle = document.getElementById('theme-toggle');
+  // Notes page: local theme toggle (separate from global header toggle)
+  // Keeps ID distinct to avoid collision with header's #theme-toggle
+  const themeToggle = document.getElementById('notes-theme-toggle');
   const body = document.body;
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {

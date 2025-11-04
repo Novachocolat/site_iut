@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Actualités de l'IUTLCO : annonces, événements et informations.">
+  <title>Actualités • Portail IUT</title>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style_index.css">
+  <link rel="stylesheet" href="css/style_actualites.css">
+  <link rel="icon" href="img/logo_iut.png" type="image/png">
+</head>
+<body data-theme="light">
+  <a href="#main" class="skip-link">Aller au contenu</a>
+  <main id="main">
+    <section>
+      <h2><i class="fa-solid fa-newspaper"></i> Actualités</h2>
+      <ul id="news-list" style="padding-left:1.2rem;">
+        <li data-category="actualites">Aucune actualité pour le moment.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Portail IUT &nbsp;·&nbsp; <a href="privacy.html">Confidentialité &amp; cookies</a>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="js/env.runtime.js"></script>
+  <script src="js/common/firebase_init.js"></script>
+  <script src="js/common/maintenance_guard.js"></script>
+  <script src="js/cookie_consent.js"></script>
+  <script src="js/common/analytics.js"></script>
+  <script src="js/common/auth.js"></script>
+  <script src="js/common/nav.js"></script>
+  <script src="js/common/news_feed.js"></script>
+</body>
+</html>

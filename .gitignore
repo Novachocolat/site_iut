@@ -1,0 +1,8 @@
+# Ignore text files containing to-do lists
+travaux_a_realiser.txt
+
+# Ignore all log files
+*.log
+
+# Ignore environment variable files
+.env

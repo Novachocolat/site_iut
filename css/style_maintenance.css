@@ -1,0 +1,30 @@
+/* Minimal, centered maintenance page */
+:root {
+  --bg: #0f1720;
+  --card: #1a2330;
+  --text: #e6edf3;
+  --muted: #9fb0c3;
+  --accent: #1976d2;
+  --radius: 16px;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: radial-gradient(1000px 500px at 50% -10%, #15202b 0, #0f1720 60%); color: var(--text); font-family: 'Segoe UI','Roboto',Arial,sans-serif; display: grid; place-items: center; }
+
+main.maintenance { width: 100%; padding: 1rem; }
+.card {
+  width: min(560px, 92vw);
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  padding: 2rem 1.6rem;
+  text-align: center;
+}
+.card i { font-size: 2.6rem; color: var(--accent); margin-bottom: .6rem; }
+.card h1 { margin: .2rem 0 .6rem; font-size: 1.6rem; }
+.card p { margin: .3rem 0; color: var(--muted); }
+.until { font-style: italic; }
+.btn { margin-top: 1rem; padding: .7rem 1rem; border-radius: 12px; border: none; background: var(--accent); color: #fff; cursor: pointer; font-size: 1rem; }
+.btn:hover { filter: brightness(1.05); }

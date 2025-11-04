@@ -20,6 +20,8 @@
   --radius: 14px;
   --transition: .25s cubic-bezier(.4,0,.2,1);
   --focus-ring: 0 0 0 3px rgba(25,118,210,.35);
+  --header-h: 56px;      /* will be updated by JS */
+  --breadcrumbs-h: 0px;  /* will be updated by JS */
 }
 [data-theme="dark"] {
   --bg: #181c23;
@@ -44,6 +46,28 @@ body {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: .5rem 1rem;
+  background: #000;
+  color: #fff;
+  z-index: 10000;
+  border-radius: 6px;
+  box-shadow: var(--focus-ring);
 }
 
 /* Links */
@@ -83,6 +107,83 @@ header {
   border-radius: 0 0 var(--radius) var(--radius);
   margin: 0 0 1rem;
 }
+
+.has-sticky main { padding-top: calc(var(--header-h) + var(--breadcrumbs-h) + 8px); }
+
+/* ============== Global site header (sticky) ============== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* brand | nav centered | controls right */
+  align-items: center;
+  gap: .75rem 1rem;
+  padding: .6rem .8rem;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+}
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.site-header .brand img { width: 28px; height: 28px; border-radius: 6px; }
+.site-header .nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #bdbdbd;
+  padding: .4rem .6rem;
+  border-radius: 8px;
+  color: var(--text);
+  line-height: 1;
+}
+.site-header .nav-toggle i { color: inherit; }
+.site-header .nav-toggle:hover { background: rgba(0,0,0,.06); }
+.site-header .nav-toggle:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.site-header nav { display: flex; gap: .5rem; justify-content: center; align-items: center; flex-wrap: nowrap; min-width: 0; }
+.site-header nav a {
+  padding: .4rem .7rem;
+  border-radius: 8px;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.site-header nav a.active,
+.site-header nav a:focus-visible { box-shadow: var(--focus-ring); }
+
+/* Controls live on header right (desktop) and inside nav (mobile) */
+.site-header .header-controls { display: flex; gap: .5rem; align-items: center; justify-content: flex-end; }
+.site-header .header-controls #search {
+  min-width: 140px;
+  width: 18vw;
+  max-width: 260px;
+  padding: .5rem .8rem;
+}
+.site-header nav .controls { display: none; gap: .5rem; align-items: center; }
+.site-header nav .controls #search { min-width: 140px; width: 100%; max-width: 100%; }
+
+@media (max-width: 800px) {
+  .site-header { grid-template-columns: auto 1fr; }
+  .site-header nav { display: none; position: absolute; left: 0; right: 0; top: calc(var(--header-h)); background: var(--card-bg); padding: .5rem; box-shadow: var(--shadow); }
+  .site-header nav.open { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .site-header nav.open a { display: block; padding: .6rem .7rem; }
+  .site-header .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  /* Mobile: hide header-right controls, show controls inside burger */
+  .site-header .header-controls { display: none; }
+  .site-header nav.open .controls { display: grid; grid-template-columns: 1fr auto; gap: .5rem; grid-column: 1 / -1; margin-top: .25rem; min-width: 0; align-items: center; }
+  .site-header nav.open .controls #search { width: 100%; max-width: 100%; box-sizing: border-box; min-width: 0; }
+  .site-header nav.open .controls #theme-toggle { white-space: nowrap; }
+}
+/* Keep original filled button style for theme toggle (desktop and mobile) */
+
+/* ============== Breadcrumbs ============== */
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; font-size: .95rem; color: var(--accent2); padding: .4rem 1rem 0; }
+.breadcrumbs a { color: inherit; text-decoration: underline; }
+.breadcrumbs .sep { opacity: .6; }
 main {
   flex: 1;
   display: grid;

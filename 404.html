@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page introuvable.">
+  <title>404 • Page introuvable</title>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style_index.css">
+  <link rel="icon" href="img/logo_iut.png" type="image/png">
+</head>
+<body data-theme="light">
+  <a href="#main" class="skip-link">Aller au contenu</a>
+  <main id="main" style="max-width:800px;margin:2rem auto;background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem;">
+    <h1><i class="fa-solid fa-triangle-exclamation"></i> Oups, page introuvable</h1>
+    <p>La page que vous cherchez n'existe pas ou a été déplacée.</p>
+    <p>
+      <a class="card" href="index.html" style="display:inline-flex;align-items:center;gap:.5rem;"> 
+        <i class="fa-solid fa-house"></i> Revenir à l'accueil
+      </a>
+    </p>
+  </main>
+  <footer style="text-align:center; padding:1rem; color:#888;">
+    <a href="privacy.html" rel="noopener">Confidentialité &amp; cookies</a>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="js/env.runtime.js"></script>
+  <script src="js/common/firebase_init.js"></script>
+  <script src="js/common/maintenance_guard.js"></script>
+  <script src="js/common/nav.js"></script>
+  <script src="js/cookie_consent.js"></script>
+</body>
+</html>
