@@ -1,7 +1,47 @@
-/* Contact page styles */
-:root { color-scheme: light dark; }
-body { background: var(--bg); color: var(--text); }
-main section { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.2rem 1rem; max-width: 900px; margin: 1rem auto; }
-#contact-list { list-style: none; padding-left: 0 !important; display: grid; gap: .6rem; }
-#contact-list li { background: rgba(84,110,122,.08); border: 1px solid #cfd8dc; border-radius: 10px; padding: .8rem .9rem; }
-[data-theme="dark"] #contact-list li { background: rgba(84,110,122,.18); border-color: #546e7a; }
+/**
+ * File: style_contact.css
+ * Description: Styles for the contact page.
+ */
+
+/* Sets the default color scheme for the page, allowing it to adapt to light and dark modes. */
+:root {
+  color-scheme: light dark;
+}
+
+/* Basic body styles using CSS variables for theme support. */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Styles for the main content section, creating a card-like appearance. */
+main section {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem 1rem;
+  max-width: 900px;
+  margin: 1rem auto;
+}
+
+/* Styles for the contact list container. */
+#contact-list {
+  list-style: none;
+  padding-left: 0 !important; /* Overrides default user-agent styles */
+  display: grid;
+  gap: .6rem;
+}
+
+/* Styles for individual contact items in the list. */
+#contact-list li {
+  background: rgba(84, 110, 122, .08);
+  border: 1px solid #cfd8dc;
+  border-radius: 10px;
+  padding: .8rem .9rem;
+}
+
+/* Dark theme specific styles for contact items. */
+[data-theme="dark"] #contact-list li {
+  background: rgba(84, 110, 122, .18);
+  border-color: #546e7a;
+}

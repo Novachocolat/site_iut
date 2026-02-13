@@ -1,4 +1,9 @@
-/* Center the back-to-portal button content */
+/**
+ * File: style_edeta.css
+ * Description: Styles specific to the EDETA application page.
+ */
+
+/* Styles for the back-to-portal button in the header. */
 header #controls .card {
   display: flex;
   align-items: center;
@@ -7,32 +12,31 @@ header #controls .card {
   text-align: center;
   color: var(--btn-back-color, #fff);
   border: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: background 0.2s;
-  padding: .6rem .9rem;    
-  min-height: 56px;        
-  font-size: 1rem;              
-  border-radius: 12px;        
-  width: auto;                  
+  padding: .6rem .9rem;
+  min-height: 56px;
+  font-size: 1rem;
+  border-radius: 12px;
+  width: auto;
 }
 
 header #controls .card i {
   font-size: 1.2rem;
 }
 
-
-/* Download button styles */
+/* Styles for the main APK download button. */
 .download-btn {
   background: var(--btn-download-bg, #0077b6);
   color: var(--btn-download-color, #fff);
   border: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: background 0.2s;
   text-align: center;
-  word-break: break-word;
+  word-break: break-word; /* Prevents long words from overflowing. */
 }
 
-/* Responsive mobile improvements */
+/* Responsive adjustments for mobile devices. */
 @media (max-width: 600px) {
   body {
     font-size: 16px;
@@ -67,7 +71,8 @@ header #controls .card i {
     padding-left: 1.2rem;
     margin-bottom: 1rem;
   }
-  /* Scope cards in main only to avoid stretching the header button */
+
+  /* Scopes card styles to main content to avoid affecting the header button. */
   main .card {
     width: 98vw;
     max-width: 98vw;
@@ -82,7 +87,8 @@ header #controls .card i {
     padding: .3rem .2rem;
     margin-bottom: .5rem;
   }
-  /* Keep header compact on mobile */
+
+  /* Keeps the header compact on mobile. */
   header {
     flex-direction: row;
     gap: .6rem;
@@ -101,7 +107,11 @@ header #controls .card i {
     font-size: .95rem;
     border-radius: 10px;
   }
-  header #controls .card i { font-size: 1.1rem; }
+  header #controls .card i {
+    font-size: 1.1rem;
+  }
+
+  /* Specific styles for the download button on mobile. */
   .download-btn {
     display: block;
     width: 92vw;

@@ -4,18 +4,12 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/contact.html</loc>
+  </url>
+  <url>
     <loc>/edeta.html</loc>
   </url>
   <url>
     <loc>/notes.html</loc>
-  </url>
-  <url>
-    <loc>/privacy.html</loc>
-  </url>
-  <url>
-    <loc>/maintenance.html</loc>
-  </url>
-  <url>
-    <loc>/crash.html</loc>
   </url>
 </urlset>

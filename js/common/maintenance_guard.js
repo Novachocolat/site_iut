@@ -1,32 +1,63 @@
 /**
- * Global maintenance guard
- * - Reads maintenance/main doc and redirects to maintenance.html when active=true
- * - Preserves current URL in ?from= for an easy return
+ * File: maintenance_guard.js
+ * Description: A global script to enforce maintenance mode.
+ *
+ * This script checks a configuration variable to determine if the site is in maintenance mode.
+ * If maintenance is active, it redirects the user to `maintenance.html`.
+ * 
+ * To enable maintenance mode, set MAINTENANCE_MODE to true in this file.
  */
-(function(){
-  function onReady(fn){
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn();
+(function() {
+  // Configuration: Set to true to enable maintenance mode
+  const MAINTENANCE_MODE = false;
+
+  /**
+   * A helper function to run a callback once the DOM is fully loaded.
+   * @param {function} fn The function to execute.
+   */
+  function onReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
   }
-  function isMaintenancePage(){
+
+  /**
+   * Checks if the current page is the maintenance page.
+   * @returns {boolean} True if the current page is maintenance.html.
+   */
+  function isMaintenancePage() {
     return /maintenance\.html$/i.test(location.pathname);
   }
-  function currentUrl(){
-    try { return location.pathname + location.search + location.hash; } catch { return '/'; }
-  }
-  function check(){
+
+  /**
+   * Gets the current URL, including path, search, and hash.
+   * @returns {string} The current URL.
+   */
+  function currentUrl() {
     try {
-      if (typeof firebase === 'undefined') return;
-      var db = firebase.firestore();
-      // Structure: collection "maintenance", document "main"
-      db.collection('maintenance').doc('main').get().then(function(doc){
-        if (!doc.exists) return;
-        var data = doc.data() || {};
-        if (data.active === true && !isMaintenancePage()) {
-          var back = encodeURIComponent(currentUrl());
-          location.replace('maintenance.html?from=' + back);
-        }
-      }).catch(function(err){ console.warn('[MaintenanceGuard] check failed', err); });
-    } catch (e) { console.warn('[MaintenanceGuard] error', e); }
+      return location.pathname + location.search + location.hash;
+    } catch {
+      return '/';
+    }
   }
-  onReady(check);
+
+  /**
+   * Checks the maintenance status and performs a redirect if needed.
+   */
+  function checkMaintenanceStatus() {
+    try {
+      // If maintenance is active and the user is not already on the maintenance page, redirect.
+      if (MAINTENANCE_MODE && !isMaintenancePage()) {
+        const returnUrl = encodeURIComponent(currentUrl());
+        location.replace('maintenance.html?from=' + returnUrl);
+      }
+    } catch (e) {
+      console.warn('[MaintenanceGuard] Error:', e);
+    }
+  }
+
+  // Run the check once the DOM is ready.
+  onReady(checkMaintenanceStatus);
 })();

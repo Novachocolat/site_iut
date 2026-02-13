@@ -1,50 +1,46 @@
-<!-- File name : notes.html -->
-<!-- Author : Lysandre PACE--BOULNOIS -->
-<!-- Description : Page for students to consult their grades and absences -->
-
+<!--
+  File: notes.html
+  Author: Lysandre PACE--BOULNOIS
+  Description: Page for students to consult their grades and absences by providing their national student identifier (INE).
+-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Basic meta -->
+  <!-- Basic meta tags, stylesheets, and favicon -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Consultez vos notes et absences pour les départements Info, GACO, GB et GEA de l’IUTLCO.">
   <title>Consultation des notes - IUTLCO</title>
   <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <!-- Icons / Styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="css/style_index.css">
+  <link rel="stylesheet" href="css/style_index.css?v=2">
   <link rel="stylesheet" href="css/style_notes.css">
   <link rel="icon" href="img/logo_iut.png" type="image/png">
 </head>
-<body data-theme="light">
+<body>
+  <!-- Accessibility skip link -->
   <a href="#main" class="skip-link">Aller au contenu</a>
-  <!-- Main container for notes consultation -->
+
+  <!-- Main container for the grades consultation interface -->
   <div class="container" id="main">
-    <!-- Title bar: page title + theme toggle -->
-    <div class="title" style="justify-content:space-between;">
+    <div class="title">
       <span style="display:flex;align-items:center;gap:.7rem;">
         <i class="fa-solid fa-clipboard-list"></i>
         Consultation des notes et absences
       </span>
-      <button id="notes-theme-toggle">
-        <i class="fa-regular fa-moon"></i>
-      </button>
     </div>
-    <!-- Subtitle: info about notes publication -->
     <div class="subtitle">
       <i class="fa-solid fa-graduation-cap"></i>
       Consultation des notes saisies sur le logiciel de notes et définies à l’état “publiable”
     </div>
-    <!-- Description: eligible departments -->
     <div class="desc">
       La consultation est disponible pour les départements <b>Info, GACO, GB et GEA</b> de l’IUT.
     </div>
-    <!-- INE input form -->
+
+    <!-- Form for students to enter their INE number -->
     <form class="input-group" autocomplete="off">
       <label for="ine"><i class="fa-solid fa-id-card"></i> Entrez votre numéro INE</label>
-      <!-- Button to submit the form -->
       <input type="text" id="ine" name="ine"
         onclick="this.value=''; document.getElementById('ok').style.display='inline-block';"
         placeholder="Ex : 123456789AB" maxlength="15" required>
@@ -53,26 +49,17 @@
         Si votre identifiant INE n’est pas défini dans le logiciel, veuillez le signaler au secrétariat.
       </div>
     </form>
-    <!-- Back to homepage link -->
-    <a href="index.html" class="card">
-      <i class="fa-solid fa-arrow-left"></i> Retour à l'accueil
-    </a>
   </div>
+
   <!-- Footer -->
   <div class="footer">
     &copy; 2025 Portail IUT &mdash; Réalisé avec <i class="fa-solid fa-heart"></i> par <a class="github" href="https://github.com/Novachocolat">Lysandre PACE--BOULNOIS</a>
-    &nbsp;&middot;&nbsp;
-    <a href="privacy.html" rel="noopener">Confidentialité &amp; cookies</a>
   </div>
-  <!-- Main script for theme and interactions -->
-  <!-- Firebase (for maintenance guard) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
-  <script src="js/env.runtime.js"></script>
-  <script src="js/common/firebase_init.js"></script>
+
+  <!-- Common application scripts -->
   <script src="js/common/maintenance_guard.js"></script>
-  <script src="js/common/nav.js"></script>
-  <script src="js/notes/script_notes.js"></script>
+  <script src="js/common/nav.js?v=2"></script>
+  <!-- Main script for handling grade lookup and display -->
   <script src="js/notes/script_bulletin.js"></script>
 </body>
 </html>

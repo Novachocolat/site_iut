@@ -1,27 +1,29 @@
-/* ==================================================
-   Notes Stylesheet (Optimisé)
-   Sections:
-   - Variables & Thèmes
-   - Base & Typographie
-   - Conteneur & Structure
-   - Formulaires & Inputs
-   - Textes (title, subtitle, desc)
-   - Utilitaires & Footer
-   - Accessibilité & Préférences
-   - Responsive
-   ================================================== */
+/**
+ * File: style_notes.css
+ * Description: Stylesheet for the student grades and absences consultation page.
+ *
+ * Table of Contents:
+ * - Variables & Themes
+ * - Base & Typography
+ * - Container & Structure
+ * - Forms & Inputs
+ * - Text & Titles
+ * - Footer
+ * - Accessibility & Preferences
+ * - Responsive Design
+ */
 
-/* ============= Variables & Thèmes ============= */
+/* ============= Variables & Themes ============= */
 :root {
   --bg: #f7fafd;
   --card-bg: #fff;
   --text: #222;
   --accent: #1976d2;
   --accent2: #546e7a;
-  --shadow: 0 4px 16px rgba(25,118,210,.08);
+  --shadow: 0 4px 16px rgba(25, 118, 210, .08);
   --radius: 14px;
-  --transition: .25s cubic-bezier(.4,0,.2,1);
-  --focus-ring: 0 0 0 3px rgba(25,118,210,.35);
+  --transition: .25s cubic-bezier(.4, 0, .2, 1);
+  --focus-ring: 0 0 0 3px rgba(25, 118, 210, .35);
 }
 [data-theme="dark"] {
   --bg: #181c23;
@@ -29,16 +31,18 @@
   --text: #f1f1f1;
   --accent: #1976d2;
   --accent2: #546e7a;
-  --shadow: 0 4px 16px rgba(25,118,210,.18);
-  --focus-ring: 0 0 0 3px rgba(144,202,249,.45);
+  --shadow: 0 4px 16px rgba(25, 118, 210, .18);
+  --focus-ring: 0 0 0 3px rgba(144, 202, 249, .45);
 }
-:root { color-scheme: light dark; }
+:root {
+  color-scheme: light dark;
+}
 
-/* ============= Base & Typographie ============= */
+/* ============= Base & Typography ============= */
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Segoe UI','Roboto',Arial,sans-serif;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   margin: 0;
   min-height: 100vh;
   display: flex;
@@ -46,10 +50,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Reset basiques pour cohérence */
-*, *::before, *::after { box-sizing: border-box; }
+/* Basic reset for consistency. */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-/* ============= Conteneur & Structure ============= */
+/* ============= Container & Structure ============= */
 .container {
   max-width: 700px;
   margin: 2.5rem auto 0;
@@ -60,24 +66,52 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  flex: 1 0 auto;
+  flex: 1 0 auto; /* Ensures the container grows but doesn't shrink, pushing the footer down. */
   position: relative;
-  isolation: isolate; /* prépare effets futurs */
+  isolation: isolate; /* Prepares for potential future stacking context effects. */
 }
 
-/* ============= Textes & Titres ============= */
-.title, .subtitle { display: flex; align-items: center; gap: .7rem; margin: 0 0 .5rem; font-weight: 700; }
-.title { font-size: 1.5rem; color: var(--accent); }
-.subtitle { font-size: 1.1rem; color: var(--accent2); font-weight: 600; gap: .5rem; }
-.desc { font-size: 1rem; margin: 0 0 1rem; line-height: 1.5; }
-.note-info { font-size: .95rem; color: #888; margin: 0; }
+/* ============= Text & Titles ============= */
+.title, .subtitle {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin: 0 0 .5rem;
+  font-weight: 700;
+}
+.title {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--accent2);
+  font-weight: 600;
+  gap: .5rem;
+}
+.desc {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.note-info {
+  font-size: .95rem;
+  color: #888;
+  margin: 0;
+}
 
-/* ============= Carte (si utilisée) ============= */
-.card { width: 220px; max-width: 100%; margin: 0 auto; text-align: center; display: flex; align-items: center; justify-content: center; gap: .5rem; }
-
-/* ============= Groupes Formulaire ============= */
-.input-group { display: flex; flex-direction: column; gap: .5rem; margin: 0 0 1.5rem; }
-label { font-weight: 500; color: var(--accent); margin: 0 0 .2rem; }
+/* ============= Form Groups ============= */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin: 0 0 1.5rem;
+}
+label {
+  font-weight: 500;
+  color: var(--accent);
+  margin: 0 0 .2rem;
+}
 input[type="text"] {
   padding: .7rem 1rem;
   border: 1px solid #bdbdbd;
@@ -89,30 +123,62 @@ input[type="text"] {
   transition: border .2s, background .25s var(--transition);
   margin: 0 0 .2rem;
 }
-input[type="text"]:focus { border-color: var(--accent); }
-input[type="text"]:focus-visible { box-shadow: var(--focus-ring); }
-input[type="text"]::placeholder { color: #777; opacity: .85; }
-
-/* ============= Footer ============= */
-.footer { text-align: center; color: #888; font-size: .95rem; margin: 2rem 0 0; flex-shrink: 0; }
-
-/* ============= Accessibilité & Préférences ============= */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+input[type="text"]:focus {
+  border-color: var(--accent);
+}
+input[type="text"]:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+input[type="text"]::placeholder {
+  color: #777;
+  opacity: .85;
 }
 
-/* ============= Responsive ============= */
+/* ============= Footer ============= */
+.footer {
+  text-align: center;
+  color: #888;
+  font-size: .95rem;
+  margin: 2rem 0 0;
+  flex-shrink: 0; /* Prevents the footer from shrinking. */
+}
+
+/* ============= Accessibility & Preferences ============= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============= Responsive Design ============= */
 @media (max-width: 900px) {
-  .container { max-width: 98vw; margin: 1.5rem 1vw 0; padding: 1.2rem .8rem 1.7rem; }
+  .container {
+    max-width: 98vw;
+    margin: 1.5rem 1vw 0;
+    padding: 1.2rem .8rem 1.7rem;
+  }
   .title { font-size: 1.3rem; }
   .subtitle { font-size: 1.05rem; }
 }
+
 @media (max-width: 600px) {
   body { font-size: 15px; }
-  .container { max-width: 100vw; margin: 1rem .2rem 0; padding: 1rem .5rem 1.2rem; border-radius: 10px; }
+  .container {
+    max-width: 100vw;
+    margin: 1rem .2rem 0;
+    padding: 1rem .5rem 1.2rem;
+    border-radius: 10px;
+  }
   .title { font-size: 1.08rem; }
   .subtitle { font-size: .98rem; }
   .desc, .note-info, label { font-size: .97rem; }
-  input[type="text"] { font-size: .97rem; padding: .6rem .7rem; }
-  .footer { font-size: .9rem; padding: 0 .2rem; }
+  input[type="text"] {
+    font-size: .97rem;
+    padding: .6rem .7rem;
+  }
+  .footer {
+    font-size: .9rem;
+    padding: 0 .2rem;
+  }
 }

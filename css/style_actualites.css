@@ -1,7 +1,0 @@
-/* Actualités page styles */
-:root { color-scheme: light dark; }
-body { background: var(--bg); color: var(--text); }
-main section { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.2rem 1rem; max-width: 900px; margin: 1rem auto; }
-#news-list { list-style: none; padding-left: 0 !important; display: grid; gap: .6rem; }
-#news-list li { background: rgba(25,118,210,.06); border: 1px solid #cfd8dc; border-radius: 10px; padding: .8rem .9rem; }
-[data-theme="dark"] #news-list li { background: rgba(25,118,210,.12); border-color: #546e7a; }

@@ -1,205 +1,175 @@
-(function(){
-  /**
-   * Global navigation & layout bootstrapper
-   * - Injects a sticky header with brand, centered nav, responsive controls (search + theme)
-   * - Adds a simple breadcrumb right under the header
-   * - Syncs theme with localStorage and exposes a toggle
-   * - Handles mobile menu open/close and adjusts CSS variables for sticky spacing
-   * - Marks active nav link based on current page and wires dynamic links (Admin/Connexion)
-   *
-   * Dependencies: fontawesome (icons), optional Analytics (window.Analytics), optional Firebase Auth roles via window.currentUserRoles
-   * DOM side-effects: inserts <header.site-header> at top of <body> and <nav.breadcrumbs> after it
-   */
-  document.addEventListener('DOMContentLoaded', function(){
+/**
+ * File: nav.js
+ * Description: Global navigation and layout bootstrapper.
+ *
+ * This script is responsible for dynamically injecting and managing a consistent,
+ * sticky header and breadcrumb navigation across all pages of the site.
+ *
+ * Key Responsibilities:
+ * - Injects a sticky header with the site brand, primary navigation, and theme toggle.
+ * - Provides responsive behavior, collapsing the navigation into a "burger" menu on mobile devices.
+ * - Synchronizes the color theme (light/dark) with `localStorage` and applies it to the `<html>` element.
+ * - Dynamically places controls (search, theme toggle) in the correct location for desktop vs. mobile.
+ * - Inserts simple breadcrumb navigation below the header.
+ * - Updates CSS custom properties (`--header-h`, `--breadcrumbs-h`) to allow other content to correctly position itself below the sticky elements.
+ */
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    // A debug flag to enable extra logging, activated by a URL parameter.
+    const NAV_DEBUG = (function() {
+      try { return /(?:^|[?&])navdebug=1(?:&|$)/.test(location.search); } catch (e) { return false; }
+    })();
+    const log = NAV_DEBUG ? (...args) => { try { console.debug('[nav]', ...args); } catch (e) {} } : () => {};
+
+    // Create the header element with its inner HTML structure.
     const header = document.createElement('header');
     header.className = 'site-header';
     header.innerHTML = `
-      <a class="brand" href="index.html" aria-label="Accueil Portail IUT">
+      <a class="brand" href="index.html" aria-label="Portal Home">
         <img src="img/logo_iut.png" alt="IUT" loading="lazy" decoding="async" />
         <span>Portail IUT</span>
       </a>
-      <nav aria-label="Navigation principale">
-        <a href="index.html">Accueil</a>
-        <a href="actualites.html">Actualités</a>
-        <a href="contact.html">Contact</a>
-        <div class="controls" role="group" aria-label="Actions (mobile)"></div>
-      </nav>
-      <button class="nav-toggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-      <div id="controls" class="header-controls" role="group" aria-label="Recherche et thème">
-        <input id="search" type="text" placeholder="Rechercher..." aria-label="Rechercher">
-        <button id="theme-toggle" aria-label="Basculer le thème"><i class="fa-regular fa-moon"></i></button>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      <div id="controls" class="header-controls" role="group" aria-label="Search and Theme">
+        <input id="search" type="text" placeholder="Rechercher..." aria-label="Search">
+        <button id="theme-toggle" aria-label="Toggle Theme"><i class="fa-regular fa-moon"></i></button>
       </div>
     `;
 
-    // Insert at top of body
-    const first = document.body.firstChild;
-    document.body.insertBefore(header, first);
+    // Insert the header at the top of the body.
+    document.body.insertBefore(header, document.body.firstChild);
 
-    // Active link: highlight current page in the header nav
-    const path = (location.pathname.split('/').pop()||'index.html').toLowerCase();
+    // Inject minimal fallback CSS if the main stylesheet is missing.
+    (function ensureHeaderStyles() {
+      try {
+        const hasMainCss = !!document.querySelector('link[href$="css/style_index.css"],link[href*="style_index.css"]');
+        if (!hasMainCss) {
+          log('style_index.css not detected, injecting minimal fallback styles.');
+          const style = document.createElement('style');
+          style.textContent = `
+            .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;color:#111;padding:.6rem .8rem;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+            body{padding-top:60px}
+          `;
+          document.head.appendChild(style);
+        }
+      } catch (e) {}
+    })();
+
     /**
-     * Mark the current page link as active in the header nav.
-     * Uses the last segment of the URL (e.g. `login.html`).
+     * Marks the navigation link corresponding to the current page as 'active'.
      */
-    function markActiveLink(){
+    function markActiveLink() {
+      const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
       header.querySelectorAll('nav a').forEach(a => {
-        const href = (a.getAttribute('href')||'').toLowerCase();
+        const href = (a.getAttribute('href') || '').toLowerCase();
         const isActive = (href === path) || (path === '' && href === 'index.html');
         a.classList.toggle('active', isActive);
       });
     }
     markActiveLink();
 
-    // Admin link (only for editor/admin)
-    /**
-     * Ensure the Admin link is present only for users with editor/admin roles.
-     */
-    function ensureAdminLink(){
-      const roles = (window.currentUserRoles) || { admin:false, editor:false };
-      const has = roles.admin || roles.editor;
-      const navEl = header.querySelector('nav');
-      const existing = navEl.querySelector('a[href="admin.html"]');
-      if (has && !existing){
-        const link = document.createElement('a');
-        link.href = 'admin.html';
-        link.textContent = 'Admin';
-        navEl.appendChild(link);
-      } else if (!has && existing){ existing.remove(); }
-    }
-  ensureAdminLink();
-  window.addEventListener('authchange', ()=>{ ensureAdminLink(); markActiveLink(); });
-
-    // Login link (only when logged out)
-    /**
-     * Ensure the Connexion link is present only when the user is logged out.
-     */
-    function ensureLoginLink(){
-      const loggedIn = !!(window.currentUser);
-      const navEl = header.querySelector('nav');
-      let loginLink = navEl.querySelector('a[href="login.html"]');
-      if (!loggedIn) {
-        if (!loginLink) {
-          loginLink = document.createElement('a');
-          loginLink.href = 'login.html';
-          loginLink.textContent = 'Connexion';
-          navEl.appendChild(loginLink);
-        }
-      } else {
-        if (loginLink) loginLink.remove();
-      }
-    }
-  ensureLoginLink();
-  window.addEventListener('authchange', ()=>{ ensureLoginLink(); markActiveLink(); });
-  // Also re-mark after links are (re)inserted
-  markActiveLink();
-
-    // Mobile toggle
-    const toggle = header.querySelector('.nav-toggle');
+    // --- Mobile Navigation Toggle ---
+    const navToggle = header.querySelector('.nav-toggle');
     const nav = header.querySelector('nav');
-    toggle?.addEventListener('click', ()=>{
+    navToggle?.addEventListener('click', () => {
       nav.classList.toggle('open');
-      try { window.Analytics && window.Analytics.track('menu_toggle', { state: nav.classList.contains('open') ? 'open' : 'closed' }); } catch {}
-      // Recompute header/breadcrumb spacing shortly after toggle
-      setTimeout(()=>{
-        const h = header.offsetHeight || 56;
-        const b = document.querySelector('.breadcrumbs')?.offsetHeight || 0;
-        document.documentElement.style.setProperty('--header-h', h + 'px');
-        document.documentElement.style.setProperty('--breadcrumbs-h', b + 'px');
-      }, 50);
-  // Move controls to the appropriate container after toggle
-  setTimeout(placeControls, 60);
+      navToggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+      if (window.Analytics) window.Analytics.track('menu_toggle', { state: nav.classList.contains('open') ? 'open' : 'closed' });
+      setTimeout(() => { updateHeights(); placeControls(); }, 60);
     });
 
-    // Theme sync (global)
+    // --- Theme Synchronization ---
     const themeBtn = header.querySelector('#theme-toggle');
-    const body = document.body;
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      body.setAttribute('data-theme', savedTheme);
-      themeBtn.innerHTML = savedTheme === 'light' ? '<i class="fa-regular fa-moon"></i>' : '<i class="fa-regular fa-sun"></i>';
-    }
-    themeBtn.addEventListener('click', ()=>{
-      const current = body.getAttribute('data-theme') || 'light';
-      const next = current === 'light' ? 'dark' : 'light';
-      body.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      themeBtn.innerHTML = next === 'light' ? '<i class="fa-regular fa-moon"></i>' : '<i class="fa-regular fa-sun"></i>';
-      try { window.Analytics && window.Analytics.track('theme_toggle', { theme: next }); } catch {}
+    const rootEl = document.documentElement;
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    rootEl.setAttribute('data-theme', currentTheme);
+    if (themeBtn) themeBtn.innerHTML = currentTheme === 'light' ? '<i class="fa-regular fa-moon"></i>' : '<i class="fa-regular fa-sun"></i>';
+    
+    themeBtn?.addEventListener('click', () => {
+      const newTheme = rootEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      rootEl.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeBtn.innerHTML = newTheme === 'light' ? '<i class="fa-regular fa-moon"></i>' : '<i class="fa-regular fa-sun"></i>';
+      if (window.Analytics) window.Analytics.track('theme_toggle', { theme: newTheme });
     });
 
-  // Breadcrumbs (simple: Accueil > Page courante)
-    const titles = {
-      'index.html': 'Accueil',
-      'actualites.html': 'Actualités',
+    // --- Breadcrumbs ---
+    const titles = { 
+      'index.html': 'Home', 
       'contact.html': 'Contact',
-      'edeta.html': 'EDETA',
-      'notes.html': 'Notes',
-      'privacy.html': 'Confidentialité',
-      'maintenance.html': 'Maintenance',
-      'crash.html': 'Jinxé',
-      '404.html': 'Erreur 404',
-      '500.html': 'Erreur 500'
+      'edeta.html': 'EDETA App',
+      'notes.html': 'Grades'
     };
-    const currentTitle = titles[path] || document.title || 'Page';
-    const bc = document.createElement('nav');
-    bc.className = 'breadcrumbs';
-    bc.setAttribute('aria-label','Fil d\'Ariane');
-    bc.innerHTML = `<a href="index.html">Accueil</a> <span class="sep">›</span> <span>${currentTitle}</span>`;
-    header.insertAdjacentElement('afterend', bc);
-
-    // Set CSS vars for sticky spacing and add class
+    const pagePath = (location.pathname.split('/').pop() || 'index.html');
+    const currentTitle = titles[pagePath] || document.title || 'Page';
+    if (pagePath !== 'index.html') {
+      const bc = document.createElement('nav');
+      bc.className = 'breadcrumbs';
+      bc.setAttribute('aria-label', 'Breadcrumb');
+      bc.innerHTML = `<a href="index.html">Home</a> <span class="sep">›</span> <span>${currentTitle}</span>`;
+      header.insertAdjacentElement('afterend', bc);
+    }
+    
     /**
-     * Update CSS variables used to offset the content based on header/breadcrumb heights.
+     * Updates CSS variables for sticky header and breadcrumbs heights.
      */
-    function updateHeights(){
+    function updateHeights() {
       const h = header.offsetHeight || 56;
-      const b = bc.offsetHeight || 0;
-      document.documentElement.style.setProperty('--header-h', h + 'px');
-      document.documentElement.style.setProperty('--breadcrumbs-h', b + 'px');
+      const b = document.querySelector('.breadcrumbs')?.offsetHeight || 0;
+      rootEl.style.setProperty('--header-h', `${h}px`);
+      rootEl.style.setProperty('--breadcrumbs-h', `${b}px`);
       document.body.classList.add('has-sticky');
+      if (nav) nav.style.top = `${h}px`; // Ensure mobile nav opens below header
     }
     updateHeights();
-    window.addEventListener('resize', ()=>{
-      // small delay to allow reflow when nav opens/closes
-      setTimeout(()=>{ updateHeights(); placeControls(); }, 50);
-    });
+    window.addEventListener('resize', () => setTimeout(() => { updateHeights(); placeControls(); }, 50));
+    const logoImg = header.querySelector('.brand img');
+    if (logoImg) {
+      logoImg.addEventListener('load', () => setTimeout(updateHeights, 10));
+      logoImg.addEventListener('error', () => setTimeout(updateHeights, 10));
+    }
 
-    // Move search + theme between desktop header right and mobile menu
-  const searchInput = header.querySelector('#search');
-    const headerControls = header.querySelector('#controls');
-    const mobileControls = nav.querySelector('.controls');
     /**
-     * Place search input and theme button in the right container depending on viewport/menu state.
-     * Maintains the order: search first, then theme.
+     * Dynamically repositions controls (search, theme) between the main header
+     * and the mobile navigation menu based on viewport size.
      */
-    function placeControls(){
-      const isMobile = window.innerWidth <= 800 || nav.classList.contains('open');
+    function placeControls() {
+      const isMobile = window.innerWidth <= 800;
+      const searchInput = header.querySelector('#search');
+      const themeToggle = header.querySelector('#theme-toggle');
+
+      const desktopControls = header.querySelector('#controls');
+      const mobileControls = nav.querySelector('.controls');
+
       if (isMobile) {
-        if (mobileControls) {
-          if (searchInput && !mobileControls.contains(searchInput)) mobileControls.appendChild(searchInput);
-          if (themeBtn && !mobileControls.contains(themeBtn)) mobileControls.appendChild(themeBtn);
-        }
+        // Move all controls into the mobile navigation container
+        [searchInput, themeToggle].forEach(el => {
+          if (el && mobileControls && !mobileControls.contains(el)) mobileControls.appendChild(el);
+        });
       } else {
-        if (headerControls) {
-          if (searchInput && !headerControls.contains(searchInput)) headerControls.appendChild(searchInput);
-          if (themeBtn && !headerControls.contains(themeBtn)) headerControls.appendChild(themeBtn);
-        }
-      }
-      // ensure order: search first, then theme
-      if (searchInput && themeBtn && searchInput.parentElement === themeBtn.parentElement) {
-        const parent = searchInput.parentElement;
-        if (parent.firstElementChild !== searchInput) parent.insertBefore(searchInput, parent.firstElementChild);
-        if (searchInput.nextElementSibling !== themeBtn) parent.insertBefore(themeBtn, searchInput.nextElementSibling);
+        // Move all controls to the desktop header controls container
+        [searchInput, themeToggle].forEach(el => {
+          if (el && desktopControls && !desktopControls.contains(el)) desktopControls.appendChild(el);
+        });
       }
     }
     placeControls();
 
-    // Analytics: track search input length (debounced)
-    if (searchInput){
-      let t; const deb = ()=>{ clearTimeout(t); t = setTimeout(()=>{
-        try { window.Analytics && window.Analytics.track('search', { len: (searchInput.value||'').length, page: (path||'index.html') }); } catch {}
-      }, 400); };
-      searchInput.addEventListener('input', deb);
+    // Debounced analytics for search input.
+    const searchInput = header.querySelector('#search');
+    if (searchInput) {
+      let searchTimeout;
+      searchInput.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          if (window.Analytics) {
+            window.Analytics.track('search', {
+              len: (searchInput.value || '').length,
+              page: (pagePath || 'index.html')
+            });
+          }
+        }, 400);
+      });
     }
   });
 })();

@@ -1,28 +1,34 @@
-<!-- File name : index.html -->
-<!-- Author : Lysandre PACE--BOULNOIS -->
-<!-- Description : Home page of the IUTLCO website -->
-
+<!--
+  File: index.html
+  Author: Lysandre PACE--BOULNOIS
+  Description: Main portal page for IUTLCO students. Provides quick access to timetables, student tools, official regulations, and other useful links.
+-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Basic meta -->
+  <!-- Basic meta tags for character set, viewport, and SEO. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portail IUTLCO: emplois du temps, outils étudiants, règlements, et liens utiles. Accès rapide aux ressources de l'IUT.">
   <title>Portail IUT</title>
-  <!-- Icons / Styles -->
+
+  <!-- Preconnect to external domains for faster resource loading. -->
   <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Stylesheets and Favicon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="css/style_index.css">
+  <link rel="stylesheet" href="css/style_index.css?v=2">
   <link rel="icon" href="img/logo_iut.png" type="image/png">
 </head>
 <body data-theme="light">
+  <!-- Accessibility link to skip navigation and jump to the main content. -->
   <a href="#main" class="skip-link">Aller au contenu</a>
-  <!-- Header supprimé: nav sticky gérée par js/common/nav.js -->
+
+  <!-- The main header is dynamically loaded and managed by js/common/nav.js to create a sticky navigation bar. -->
 
   <main id="main">
-    <!-- Timetables by department -->
+    <!-- Section: Timetables per department -->
     <section aria-labelledby="edt-but-titre">
       <h2 id="edt-but-titre"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Emploi du temps</h2>
       <div class="grid apps">
@@ -37,11 +43,10 @@
       </div>
     </section>
 
-    <!-- Tools / platforms -->
+    <!-- Section: Links to various student tools and platforms. -->
     <section class="tools" aria-labelledby="outils-titre">
       <h2 id="outils-titre"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Outils</h2>
       <div class="grid">
-        <!-- Big Button Moodle -->
         <a class="card moodle wide" href="https://cas.univ-littoral.fr//login?service=https%3A%2F%2Fmoodle.univ-littoral.fr%2Flogin%2Findex.php%3FauthCAS%3DCAS" target="_blank" rel="noopener noreferrer" style="grid-column: span 2;"><i class="fa-brands fa-m" aria-hidden="true"></i> Moodle</a>
         <a class="card gmail" href="https://mail.google.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Mail Ulco</a>
         <a class="card" href="https://jrcan.dev" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code" aria-hidden="true"></i> JrCan.dev</a>
@@ -52,7 +57,7 @@
       </div>
     </section>
 
-    <!-- Daily timetable snapshot -->
+    <!-- Section: Daily timetable snapshot for specific departments. -->
     <section aria-labelledby="edt-jour-titre">
       <h2 id="edt-jour-titre"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Emploi du temps journalier</h2>
       <div class="grid schedule">
@@ -62,7 +67,7 @@
       </div>
     </section>
 
-    <!-- Regulations / MCCC -->
+    <!-- Section: Links to official academic regulations (MCCC). -->
     <section aria-labelledby="reglements-titre">
       <h2 id="reglements-titre"><i class="fa-solid fa-file-contract" aria-hidden="true"></i> Règlements et MCCC</h2>
       <ul>
@@ -82,7 +87,7 @@
       </ul>
     </section>
 
-    <!-- Public Parcoursup reports -->
+    <!-- Section: Links to public Parcoursup admission reports. -->
     <section aria-labelledby="rapports-titre">
       <h2 id="rapports-titre"><i class="fa-solid fa-file-contract" aria-hidden="true"></i> Rapports Publics Parcoursup </h2>
       <ul>
@@ -106,35 +111,19 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Page Footer -->
   <footer>
     &copy; 2025 Portail IUT &mdash; Réalisé avec <i class="fa-solid fa-heart" aria-hidden="true"></i> par
     <a class="github" href="https://github.com/Novachocolat" target="_blank" rel="noopener noreferrer">Lysandre PACE--BOULNOIS</a>
-    &nbsp;&middot;&nbsp;
-    <a href="privacy.html" rel="noopener">Confidentialité &amp; cookies</a>
   </footer>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
-  <!-- Runtime env generated from .env -->
-  <script src="js/env.runtime.js"></script>
-  <!-- Firebase init + maintenance guard (global) -->
-  <script src="js/common/firebase_init.js"></script>
-  <script src="js/common/maintenance_guard.js"></script>
-  <!-- Cookie consent banner (RGPD) -->
-  <script src="js/cookie_consent.js"></script>
-  <!-- Analytics (gated by consent) and Auth -->
-  <script src="js/common/analytics.js"></script>
-  <script src="js/common/auth.js"></script>
-  <!-- Global sticky header & breadcrumbs -->
-  <script src="js/common/nav.js"></script>
-    <!-- Main script -->
-  <script src="js/index/script_index.js"></script>
-  <script src="js/index/firebase_index.js"></script>
+  <!-- Common application scripts -->
+  <script src="js/common/maintenance_guard.js"></script> <!-- Checks for and handles maintenance mode. -->
+  <script src="js/common/analytics.js"></script>        <!-- Google Analytics tracking. -->
+  <script src="js/common/nav.js?v=2"></script>            <!-- Handles global sticky header and navigation. -->
+  <script src="js/common/search.js"></script>            <!-- Search filter for cards and links. -->
 
-  <!-- Info popup (modern notification style) -->
+  <!-- Notification popup for the new EDETA mobile app. -->
   <div id="info-popup" role="alert" aria-live="polite">
     <button id="popup-close" aria-label="Close notification" title="Fermer" type="button">
       <i class="fa-solid fa-xmark"></i>
