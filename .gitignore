@@ -4,5 +4,6 @@ travaux_a_realiser.txt
 # Ignore all log files
 *.log
 
-# Ignore node modules
+# Ignore folders
 node_modules/
+pdf/
