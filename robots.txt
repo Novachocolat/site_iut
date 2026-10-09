@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: /sitemap.xml
+
+# Note: privacy.html removed on 2025-11-13; cookie consent no longer served.

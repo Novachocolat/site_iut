@@ -1,50 +1,74 @@
-# Portail Étudiant IUT
+# IUT Student Portal
 
-Ce site web sert de portail pour les étudiants de l'IUT du Littoral Côte d'Opale. Il centralise les liens utiles, les emplois du temps, les règlements, et d'autres ressources essentielles.
+This website serves as a portal for students of the IUT du Littoral Côte d'Opale. It centralizes useful links, timetables, regulations, and other essential resources.
 
-## Fonctionnalités
+## Features
 
-- **Recherche intelligente** : Filtre instantanément les cartes et liens du portail.
-- **Thème clair/sombre** : Bascule entre les modes via le bouton en haut à droite.
-- **Accès rapide** :
-  - Emplois du temps par département (GEA, TC, INFO, GEII, BIO, GIM, GTE, GACO)
-  - Outils ULCO : Webmail, Moodle, Compte LDAP, JrCan.dev, Notes, WIMS
-  - Règlements et MCCC (PDF)
-- **Easter egg** : Tape "rickroll" dans la barre de recherche 😉
+- **Smart search**: Instantly filters cards and links on the portal.
+- **Light/Dark theme**: Toggle between modes using the button at the top right.
+- **Quick access**:
+  - Timetables by department (GEA, TC, INFO, GEII, BIO, GIM, GTE, GACO)
+  - ULCO tools: Webmail, Moodle, LDAP Account, JrCan.dev, Grades, WIMS
+  - Regulations and MCCC (PDF)
+- **Mobile app page**: EDETA, with download for Android and info for iOS
 
-## Structure du projet
+## Project Structure
 
 ```
 index.html
+contact.html
+notes.html
+edeta.html
+maintenance.html
+404.html
+500.html
 css/
   style_index.css
+  style_contact.css
+  style_notes.css
+  style_edeta.css
+  style_maintenance.css
 js/
-  script_index.js
+  common/
+    maintenance_guard.js       # redirect to maintenance.html when active
+    analytics.js               # analytics helper
+    nav.js                     # sticky header, breadcrumbs, responsive controls
+  index/
+    script_index.js            # homepage search filter
+  notes/
+    script_notes.js            # local theme toggle
+    script_bulletin.js         # grade lookup logic
+  script_edeta.js              # EDETA page logic
 img/
-  logo_iut.png
+apk/
 pdf/
-  reglements/
-    ... (PDFs des règlements et MCCC)
-  rapports/
-    ... (Rapports Parcoursup)
+documentation/
 ```
 
-## Utilisation
+## Usage
 
-1. Ouvre `index.html` dans ton navigateur.
-2. Utilise la barre de recherche ou navigue via les cartes.
-3. Clique sur les liens pour accéder aux ressources.
+1. Open `index.html` in your browser.
+2. Use the search bar or navigate via the cards.
+3. Click links to access resources.
+4. For mobile app info and download, visit `edeta.html`.
 
-## Personnalisation
+### Conventions
 
-- Modifie les liens ou ajoute des sections dans `index.html`.
-- Change le style dans `css/style_index.css`.
-- Ajoute des fonctionnalités dans `js/script_index.js`.
+- Shared scripts live under `js/common`; page-specific logic lives under `js/<page>`.
+- Most modules are self-contained (IIFE) and document purpose and dependencies.
+- The global header (brand/nav/search/theme) + breadcrumbs are injected by `js/common/nav.js` on all pages.
+- IDs should be unique per page.
 
-## Auteur
+## Customization
+
+- Edit links or add sections in `index.html` and `edeta.html`.
+- Change styles in `css/style_index.css` and `css/style_edeta.css`.
+- Add features in `js/index/script_index.js` and `js/script_edeta.js`.
+
+## Author
 
 Lysandre PACE--BOULNOIS / Nova
 
 ---
 
-> Ce projet est affilié officiellement à l'IUT de Calais et pas (encore) pour l'ULCO.
+> This project is officially affiliated with the IUT of Calais.
