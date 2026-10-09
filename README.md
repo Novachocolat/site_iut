@@ -44,10 +44,11 @@ All asset and page URLs are root-absolute (`/assets/...`, `/pages/...`), so the 
 from the root of a web server. For local development:
 
 ```bash
-python3 -m http.server 8000
+docker compose up --build
 ```
 
-then open <http://localhost:8000/>.
+then open <http://localhost:8080/> (files are mounted, so edits show up on refresh).
+Without Docker, `python3 -m http.server 8000` also works.
 
 ### Conventions
 
