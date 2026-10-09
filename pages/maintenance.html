@@ -1,0 +1,37 @@
+<!--
+  File: maintenance.html
+  Description: A static page displayed to users when the website is in maintenance mode.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Le Portail IUT est temporairement indisponible pour maintenance. Merci de revenir plus tard.">
+  <title>Maintenance • Portail IUT</title>
+
+  <!-- Preconnects, stylesheets, and favicon -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/pages/maintenance.css">
+  <link rel="icon" href="/assets/img/logo_iut.png" type="image/png">
+</head>
+<body>
+  <main class="maintenance" role="main" aria-labelledby="maint-title" id="main">
+    <div class="card">
+      <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+      <h1 id="maint-title">Maintenance en cours</h1>
+      <!-- The message and time are meant to be updated dynamically -->
+      <p id="maint-message">Nous procédons à des opérations de maintenance. Merci de revenir plus tard.</p>
+      <p id="maint-until" class="until"></p>
+      
+      <!-- Hidden by default; meant to be shown when maintenance mode is turned off. -->
+      <button id="try-back" type="button" class="btn" style="display:none;">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Retour à l'accueil
+      </button>
+    </div>
+  </main>
+
+  <!-- No scripts needed for static maintenance page -->
+</body>
+</html>

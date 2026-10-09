@@ -1,0 +1,73 @@
+<!--
+  File: edeta.html
+  Author: Lysandre PACE--BOULNOIS
+  Description: Informational page for the EDETA mobile application. It describes the app's features, availability, and provides a download link for the Android version.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EDETA, l'application mobile de l'IUTLCO pour consulter rapidement votre emploi du temps. Téléchargement Android.">
+  <title>EDETA - Application Mobile</title>
+
+  <!-- Preconnects, stylesheets, and favicon -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages/edeta.css">
+  <link rel="icon" href="/assets/img/logo_iut.png" type="image/png">
+</head>
+<body data-theme="light">
+  <!-- Accessibility skip link -->
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <main id="main">
+    <!-- Section: What is EDETA? -->
+    <section>
+      <h2><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> Application mobile EDETA</h2>
+      <h3 class="subsection-title subsection-title--compact"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Qu'est-ce que EDETA ?</h3>
+      <div class="desc large">
+        EDETA est l'application mobile pour les étudiants de l'IUTLCO.<br>
+        <b>Fonctionnalités&nbsp;:</b>
+        <ul>
+          <li><i class="fa-solid fa-calendar-days"></i> Accès rapide à votre emploi du temps</li>
+          <li><i class="fa-solid fa-bell"></i> Notifications en cas de changement d'emploi du temps</li>
+          <li><i class="fa-solid fa-user"></i> Espace étudiant personnalisé</li>
+        </ul>
+      </div>
+
+      <!-- Section: Availability -->
+      <h3 class="subsection-title subsection-title--spaced"><i class="fa-solid fa-suitcase" aria-hidden="true"></i> Pour quelles formations est-elle disponible ?</h3>
+      <div class="desc large">
+        Actuellement, l'application EDETA est en phase de test auprès des étudiants du BUT INFO.<br><br>
+        Si l'application connait du succès, elle se verra disponible pour les autres départements de l'IUT !
+      </div>
+    </section>
+
+    <!-- Section: Download -->
+    <section>
+      <h2><i class="fa-solid fa-download" aria-hidden="true"></i> Télécharger</h2>
+      <!-- Android APK download link -->
+      <a href="/apk/composeApp-debug.apk" class="card download-btn">
+        <i class="fa-brands fa-android"></i>
+        <span>Télécharger EDETA pour Android</span>
+      </a>
+      <div class="note-info download-note">
+        <i class="fa-solid fa-circle-info"></i> Version iOS disponible prochainement !
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Portail IUT &mdash; Réalisé avec <i class="fa-solid fa-heart"></i> par
+    <a class="github" href="https://github.com/Novachocolat" target="_blank" rel="noopener noreferrer">Lysandre PACE--BOULNOIS</a>
+  </footer>
+
+  <script type="module" src="/assets/js/pages/edeta.js"></script>
+
+</body>
+</html>

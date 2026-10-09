@@ -1,0 +1,117 @@
+/**
+ * File: edeta.css
+ * Description: Styles specific to the EDETA application page.
+ */
+
+/* Section headings and spacing (previously inline styles). */
+.subsection-title {
+  color: var(--accent2);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.subsection-title--compact { margin: .6rem 0 0; }
+.subsection-title--spaced { margin-top: 1rem; }
+.desc.large { font-size: 1.1rem; }
+
+/* Styles for the main APK download button. */
+.download-btn {
+  max-width: 340px;
+  margin: auto;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s;
+  text-align: center;
+  word-break: break-word; /* Prevents long words from overflowing. */
+}
+
+/* The button keeps its colour on hover/focus (unlike regular cards). */
+.download-btn:hover,
+.download-btn:focus {
+  background: var(--accent);
+}
+
+.download-note {
+  text-align: center;
+  margin-top: .7rem;
+}
+
+/* Responsive adjustments for mobile devices. */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 0;
+    background: var(--bg);
+  }
+  main {
+    padding: 1rem 0;
+  }
+  section {
+    max-width: 98vw;
+    margin-bottom: 1.5rem;
+    padding: 1.2rem .7rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    background: var(--card-bg);
+  }
+  h1 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: .7rem;
+  }
+  .desc {
+    font-size: 1.05rem;
+    padding: .4rem 0 .7rem 0;
+    line-height: 1.6;
+  }
+  ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Scopes card styles to main content to avoid affecting the header button. */
+  main .card {
+    width: 98vw;
+    max-width: 98vw;
+    font-size: 1.05rem;
+    padding: 1.1rem .5rem;
+    min-height: 60px;
+    margin: 1rem auto;
+    border-radius: 14px;
+  }
+  .note-info {
+    font-size: 1rem;
+    padding: .3rem .2rem;
+    margin-bottom: .5rem;
+  }
+
+  /* Keeps the header compact on mobile. */
+  header {
+    flex-direction: row;
+    gap: .6rem;
+    padding: .9rem .7rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #controls {
+    width: auto;
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
+
+  /* Keeps the download button width consistent with the desktop layout. */
+  main .download-btn {
+    max-width: 340px;
+    margin: auto;
+    box-sizing: border-box;
+  }
+}
